@@ -1,0 +1,42 @@
+{
+  "name": "@czarsimon/remotelogger",
+  "version": "0.1.0",
+  "description": "Frontend logging library for the https://github.com/CzarSimon/httplogger backend",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "lint": "echo \"Error: no linting rules specified\" && exit 0",
+    "format": "echo \"Error: no formating specified\" && exit 0",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CzarSimon/remotelogger.git"
+  },
+  "keywords": [
+    "logging"
+  ],
+  "author": "Simon Lindgren",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CzarSimon/remotelogger/issues"
+  },
+  "homepage": "https://github.com/CzarSimon/remotelogger#readme",
+  "dependencies": {
+    "@czarsimon/httpclient": "^0.2.0",
+    "@types/uuid": "^3.4.5",
+    "uuid": "^3.3.2"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "devDependencies": {
+    "typescript": "^3.5.2"
+  }
+}
