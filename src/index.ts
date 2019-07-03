@@ -37,15 +37,15 @@ function debug(message: any) {
 };
 
 function info(message: any) {
-    log(message, "debug");
+    log(message, "info");
 };
 
 function warn(message: any) {
-    log(message, "debug");
+    log(message, "warning");
 };
 
 function error(message: any) {
-    log(message, "debug");
+    log(message, "error");
 };
 
 async function log(message: any, level: Level = "info") {
