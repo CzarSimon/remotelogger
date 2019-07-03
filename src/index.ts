@@ -8,6 +8,7 @@ let CLIENT_NAME: string = "";
 let CLIENT_VERSION: string = "";
 let CLIENT_ID: string = "";
 let SESSION_ID: string = uuid();
+let DEV_MODE: boolean = false;
 
 interface ConfigOptions {
     url?: string
@@ -16,6 +17,7 @@ interface ConfigOptions {
     version?: string
     clientId?: string
     sessionId?: string
+    DEV_MODE?: boolean
 };
 
 type Level = ("debug" | "info" | "warning" | "error");
@@ -68,7 +70,15 @@ async function log(message: any, level: Level = "info") {
             `method=${HTTP_METHOD} status=${status} error=${error.message}`
         );
     }
+
+    if (DEV_MODE) {
+        consoleLog(event, status);
+    }
 };
+
+function consoleLog(event: LogEvent, status: number) {
+    console.log(`${event.level.toUpperCase()}: ${event.message}. httplogger=${status}`);
+}
 
 function createLogEvent(message: any, level: Level): LogEvent {
     return {
@@ -108,6 +118,10 @@ function configure(opts: ConfigOptions) {
 
     if (opts.sessionId) {
         SESSION_ID = opts.sessionId;
+    }
+
+    if (opts.DEV_MODE) {
+        DEV_MODE = opts.DEV_MODE;
     }
 };
 
