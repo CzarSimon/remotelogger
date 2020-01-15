@@ -13,7 +13,7 @@ export class ConsoleHandler extends Handler {
     return this.level;
   };
 
-  public log(message: any, level: Level) {
+  public log(message: string, level: Level) {
     const lStr = levelToString(level)
     if (!lStr) {
       return;

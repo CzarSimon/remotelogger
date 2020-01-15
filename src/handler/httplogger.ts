@@ -52,7 +52,7 @@ export class HttploggerHandler extends Handler {
     return this.level;
   };
 
-  public async log(message: any, level: Level) {
+  public async log(message: string, level: Level) {
     const lStr = levelToString(level)
     if (!lStr) {
       return;
@@ -74,7 +74,7 @@ export class HttploggerHandler extends Handler {
     };
   };
 
-  private createLogEvent(message: any, level: string): LogEvent {
+  private createLogEvent(message: string, level: string): LogEvent {
     const { app, clientId, version, sessionId } = this.opts;
 
     return {
@@ -82,7 +82,7 @@ export class HttploggerHandler extends Handler {
       version,
       sessionId: sessionId!,
       clientId: clientId,
-      message: `${message}`,
+      message,
       level,
     };
   };

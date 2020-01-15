@@ -2,7 +2,7 @@ import { Level } from "../util/level";
 
 export abstract class Handler {
   abstract getLevel(): Level;
-  abstract log(message: any, level: Level): void;
+  abstract log(message: string, level: Level): void;
 }
 
 export interface Handlers {
