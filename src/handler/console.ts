@@ -1,5 +1,5 @@
-import { Handler } from "./base";
 import { Level, levelToString } from "../util/level";
+import { Handler } from "./base";
 
 export class ConsoleHandler extends Handler {
   private level: Level;

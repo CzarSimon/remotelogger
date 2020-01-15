@@ -1,5 +1,5 @@
-import uuid from 'uuid/v4';
 import CircutBreaker from "@czarsimon/circutbreaker";
+import uuid from 'uuid/v4';
 
 export interface Headers {
   [name: string]: string
@@ -52,9 +52,9 @@ export async function request<T = any, E = any>(opts: Options): Promise<Response
     return {
       error: {
         body: errorBody,
-        url: url,
         requestId: headers["X-Request-ID"],
         status: res.status,
+        url,
       },
       status: res.status
     }
@@ -79,9 +79,9 @@ function circutOpenResponse<T, E>(url: string): Response<T, E> {
   const status = 503;
   return {
     error: {
-      url,
       requestId: "CIRCUT_OPEN",
       status,
+      url,
     },
     status,
   }

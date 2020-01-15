@@ -1,5 +1,5 @@
 import { Handlers } from "./handler";
-import { Level, DEBUG, ERROR, INFO, WARNING } from "./util/level";
+import { DEBUG, ERROR, INFO, Level, WARNING } from "./util/level";
 
 interface Options {
   handlers: Handlers
@@ -31,10 +31,14 @@ export class Logger {
     this.log(message, ERROR);
   };
 
-  private log(message: any, level: Level) {
-    for (const name in this.handlers) {
-      const handler = this.handlers[name];
+  public configure(handlers: Handlers) {
+    for (const name of Object.keys(handlers)) {
+      this.handlers[name] = handlers[name];
+    };
+  };
 
+  private log(message: any, level: Level) {
+    for (const handler of Object.values(this.handlers)) {
       if (level < handler.getLevel()) {
         continue;
       }
@@ -44,15 +48,9 @@ export class Logger {
     };
   };
 
-  public configure(handlers: Handlers) {
-    for (const name in handlers) {
-      this.handlers[name] = handlers[name];
-    };
-  };
-
 };
 
-let defaultLogger = new Logger({
+const defaultLogger = new Logger({
   handlers: {}
 });
 
@@ -77,11 +75,11 @@ function configure(handlers: Handlers) {
 };
 
 const remotelogger = {
+  configure,
   debug,
+  error,
   info,
   warn,
-  error,
-  configure
 };
 
 export default remotelogger;

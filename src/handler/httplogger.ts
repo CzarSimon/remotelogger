@@ -1,6 +1,8 @@
 import { Handler } from "./base";
-import { Level, levelToString } from "../util/level";
+
 import { request } from "../util/httpclient";
+import { Level, levelToString } from "../util/level";
+
 import uuid from 'uuid/v4';
 
 interface LogEvent {
@@ -79,11 +81,11 @@ export class HttploggerHandler extends Handler {
 
     return {
       app,
-      version,
-      sessionId: sessionId!,
-      clientId: clientId,
-      message,
+      clientId,
       level,
+      message,
+      sessionId: sessionId!,
+      version,
     };
   };
 
