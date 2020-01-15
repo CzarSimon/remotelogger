@@ -39,6 +39,7 @@ export async function request<T = any, E = any>(opts: Options): Promise<Response
     headers,
     method: opts.method,
   });
+  circutBreaker.record(url, res.status);
 
   if (res.ok) {
     const responseBody: T = await res.json();
@@ -47,7 +48,6 @@ export async function request<T = any, E = any>(opts: Options): Promise<Response
       status: res.status
     }
   } else {
-    circutBreaker.record(url, res.status);
     const errorBody: E = await res.json();
     return {
       error: {
