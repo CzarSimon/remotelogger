@@ -1,4 +1,4 @@
-import { Level } from "../util/level";
+import { Level } from '../util/level';
 
 export abstract class Handler {
   public abstract getLevel(): Level;
@@ -6,5 +6,5 @@ export abstract class Handler {
 }
 
 export interface Handlers {
-  [name: string]: Handler
+  [name: string]: Handler;
 }
