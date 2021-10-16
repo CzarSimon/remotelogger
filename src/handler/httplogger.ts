@@ -3,7 +3,7 @@ import { Handler } from './base';
 import { request } from '../util/httpclient';
 import { Level, levelToString } from '../util/level';
 
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 
 interface LogEvent {
   app: string;
