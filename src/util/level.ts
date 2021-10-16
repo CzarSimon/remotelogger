@@ -6,12 +6,12 @@ export const WARNING: Level = 30;
 export const ERROR: Level = 40;
 
 const levelMap = {
-  [DEBUG]: "debug",
-  [INFO]: "info",
-  [WARNING]: "warning",
-  [ERROR]: "error",
+  [DEBUG]: 'debug',
+  [INFO]: 'info',
+  [WARNING]: 'warning',
+  [ERROR]: 'error',
 };
 
-export function levelToString(level: Level): (string | undefined) {
-  return levelMap[level]
-};
+export function levelToString(level: Level): string | undefined {
+  return levelMap[level];
+}
